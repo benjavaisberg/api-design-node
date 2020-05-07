@@ -21,7 +21,7 @@ var id = 0;
 var updateId = function(req, res, next) {
   // fill this out. this is the route middleware for the ids
   id++;
-  req.body.id = id;
+  req.body.id = id + '';
   next();
 };
 
@@ -54,9 +54,7 @@ app.get('/lions/:id', function(req, res){
 
 app.post('/lions', updateId, function(req, res) {
   var lion = req.body;
-
   lions.push(lion);
-
   res.json(lion);
 });
 
