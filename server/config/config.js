@@ -22,5 +22,12 @@ config.env = process.env.NODE_ENV;
 // env we are in. We then merge those objects with the env config overriting
 // the default config if here. We then export that new object for our app to use
 var envConfig;
+try {
+  envConfig = require('./' + config.env);
+  envConfig = envConfig || {};
+} catch(err) {
+  envConfig = {};
+  console.log(err);
+}
 
 module.exports = _.merge(config, envConfig);
